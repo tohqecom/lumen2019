@@ -5,7 +5,7 @@ version: "3.1"
 services:
     mysql:
       image: mysql:5.7.22
-      container_name: ecom-mysql
+      container_name: lumen-mysql
       working_dir: /application
       volumes:
         - .:/application
@@ -14,15 +14,15 @@ services:
       command: '--default-authentication-plugin=mysql_native_password'
       environment:
         - MYSQL_ROOT_PASSWORD=root@123
-        - MYSQL_DATABASE=db_app
-        - MYSQL_USER=user_app
-        - MYSQL_PASSWORD=pass_app
+        - MYSQL_DATABASE=db_lumen
+        - MYSQL_USER=lumen
+        - MYSQL_PASSWORD=lumen
       ports:
-        - "3333:3306"
+        - "2222:3306"
 
     webserver:
       image: nginx:alpine
-      container_name: ecom-webserver
+      container_name: lumen-webserver
       working_dir: /application
       volumes:
         - .:/application
@@ -32,7 +32,7 @@ services:
 
     php-fpm:
       build: phpdocker/php-fpm
-      container_name: ecom-php-fpm
+      container_name: lumen-php-fpm
       working_dir: /application
       volumes:
         - .:/application
@@ -45,7 +45,7 @@ services:
       image: adminer
       restart: always
       ports:
-        - 8282:8080
+        - 1112:8080
       links:
         - mysql:db
 

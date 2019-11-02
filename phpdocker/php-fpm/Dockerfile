@@ -5,7 +5,7 @@ WORKDIR "/application"
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Install selected extensions and other stuff
-RUN apt-get update -y && apt-get install -y zip unzip
+RUN apt-get update -y && apt-get install -y zip unzip vim 
 RUN apt-get update \
     && apt-get -y --no-install-recommends install  php-memcached php7.1-mysql php-redis php7.1-imap \
     && apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
